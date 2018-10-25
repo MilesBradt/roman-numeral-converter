@@ -4,6 +4,13 @@ function count1(num) {
   }
 }
 
+function countTo3(num) {
+  var countUp= []
+  for (var i = 0; i < num; i++) {
+  countUp.push("I")
+  }
+  return countUp.join('');
+}
 
 
 
@@ -27,7 +34,7 @@ function count1(num) {
 $(document).ready(function() {
   $("#form1").submit(function() {
     event.preventDefault();
-    var romanNumeral = count1(parseInt($("input#number").val()));
+    var romanNumeral = countTo3(parseInt($("input#number").val()));
     console.log(romanNumeral);
   })
 
