@@ -1,4 +1,4 @@
-function count1(num) {
+function translate1(num) {
   if (num === 1) {
     return "I";
   }
@@ -10,6 +10,20 @@ function countTo3(num) {
   countUp.push("I")
   }
   return countUp.join('');
+}
+
+function countTo4(num) {
+  if (num <= 3) {
+    return countTo3(num);
+  } else if (num === 4) {
+    return "IV";
+  }
+}
+
+function translate5(num) {
+  if (num === 5) {
+    return "V";
+  }
 }
 
 
@@ -34,7 +48,7 @@ function countTo3(num) {
 $(document).ready(function() {
   $("#form1").submit(function() {
     event.preventDefault();
-    var romanNumeral = countTo3(parseInt($("input#number").val()));
+    var romanNumeral = countTo4(parseInt($("input#number").val()));
     console.log(romanNumeral);
   })
 
