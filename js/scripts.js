@@ -20,8 +20,10 @@ function countTo4(num) {
   }
 }
 
-function translate5(num) {
-  if (num === 5) {
+function countTo5(num) {
+  if (num <= 4) {
+    return countTo4(num);
+  } else if (num === 5) {
     return "V";
   }
 }
@@ -34,21 +36,10 @@ function translate5(num) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
 $(document).ready(function() {
   $("#form1").submit(function() {
     event.preventDefault();
-    var romanNumeral = countTo4(parseInt($("input#number").val()));
+    var romanNumeral = countTo5(parseInt($("input#number").val()));
     console.log(romanNumeral);
   })
 
