@@ -1,9 +1,4 @@
-// function translate1(num) {
-//   if (num === 1) {
-//     return "I";
-//   }
-// }
-
+// Business Logic
 function countTo3(num) {
   var countUp= []
   for (var i = 0; i < num; i++) {
@@ -32,35 +27,11 @@ function countTo9(num) {
   if (num <= 5) {
     return countTo5(num);
   } else if (num > 5 && num % 5 <= 3) {
-   return countTo5(num) + countTo3(num % 5);
+   return "V" + countTo3(num % 5);
  } else if (num === 9) {
   return "IX";
   }
 }
-//
-// function countTo10(num) {
-//   if (num <= 9) {
-//     return countTo9(num);
-//   } else if (num >= 10) {
-//     return "X";
-//   }
-// }
-//
-// function countTo14(num) {
-//   if (num <= 10) {
-//     return countTo10(num);
-//   } else if (num > 10 && num % 10 <= 3) {
-//     return countTo10(num) + countTo3(num % 10);
-//   } else if (num === 14) {
-//     return "XIV";
-//   }
-// }
-//
-// function countsPast15(num) {
-//   if (num <= 14) {
-//     return countTo14(num);
-//   }
-// }
 
 function determinesTens(num) {
   var remainderTen = (num % 10);
@@ -95,20 +66,67 @@ function determinesTens(num) {
   }
 }
 
-// function outPutsTens(num) {
-//   if (num === 10) {
-//     return "X"
-//   } else {
-//     return (determinesTens(num));
-//   }
-// }
+function determinesHundreds(num) {
+  var remainderHundred = (num % 100);
+  if (num <= 99) {
+    return determinesTens(num);
+  }
+  else if (num >= 100 && num <= 199) {
+    return "C" + determinesTens(remainderHundred)
+  }
+  else if (num >= 200 && num <= 299) {
+    return "CC" + determinesTens(remainderHundred)
+  }
+  else if (num >= 300 && num <= 399) {
+    return "CCC" + determinesTens(remainderHundred)
+  }
+  else if (num >= 400 && num <= 499) {
+    return "CD" + determinesTens(remainderHundred)
+  }
+  else if (num >= 500 && num <= 599) {
+    return "D" + determinesTens(remainderHundred)
+  }
+  else if (num >= 600 && num <= 699) {
+    return "DC" + determinesTens(remainderHundred)
+  }
+  else if (num >= 700 && num <= 799) {
+    return "DCC" + determinesTens(remainderHundred)
+  }
+  else if (num >= 800 && num <= 899) {
+    return "DCCC" + determinesTens(remainderHundred)
+  }
+  else if (num >= 900 && num <= 999) {
+    return "CM" + determinesTens(remainderHundred)
+  }
+}
 
-
+function romanNumeralConverter(num) {
+  var remainderThousand = (num % 1000);
+  if (num === 0) {
+    return "Romans didn't invent 0"
+  }
+  else if (num <= 999) {
+    return determinesHundreds(num)
+  }
+  else if (num >= 1000 && num <= 1999) {
+    return "M" + determinesHundreds(remainderThousand)
+  }
+  else if (num >= 2000 && num <= 2999) {
+    return "MM" + determinesHundreds(remainderThousand)
+  }
+  else if (num >= 3000 && num <= 3999) {
+    return "MMM" + determinesHundreds(remainderThousand)
+  } else if (num >= 4000 || num === 0) {
+    return "Not a roman numeral."
+  }
+}
+// User Interface Logic
 $(document).ready(function() {
   $("#form1").submit(function() {
     event.preventDefault();
-    var romanNumeral = determinesTens(parseInt($("input#number").val()));
+    var romanNumeral = romanNumeralConverter(parseInt($("input#number").val()));
     console.log(romanNumeral);
+    $("#romanOutput").text(romanNumeral);
   })
 
 });
